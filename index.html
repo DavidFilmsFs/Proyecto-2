@@ -1,0 +1,260 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+        <style>
+          .card-summary {
+            position: relative;
+            display: block;
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            padding: 0;
+            border: 0;
+            background: linear-gradient(140deg, #b6232f 0%, #e36b32 52%, #f4c84a 100%);
+            color: inherit;
+            text-align: left;
+            cursor: pointer;
+          }
+          .card-summary:focus-visible {
+            outline: 3px solid #3273dc;
+            outline-offset: 2px;
+          }
+          .card-summary-image {
+            display: block;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .card-summary::after {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(15, 19, 22, 0.92), rgba(15, 19, 22, 0.05) 78%);
+            content: "";
+          }
+          .card-summary-title {
+            position: absolute;
+            z-index: 1;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: 0;
+            padding: 1rem;
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+          }
+          .card-details[hidden] {
+            display: none;
+          }
+          .card-actions {
+            gap: 0.5rem;
+            margin-top: 1rem;
+          }
+          .personaje-dialog {
+            width: min(42rem, calc(100% - 2rem));
+            max-height: calc(100% - 2rem);
+            padding: 0;
+            border: 0;
+            border-radius: 8px;
+            background-color: #102a43;
+            color: #f5f7fa;
+          }
+          .personaje-dialog .title,
+          .personaje-dialog .label {
+            color: #fff;
+          }
+          .personaje-dialog::backdrop {
+            background: rgba(15, 19, 22, 0.72);
+          }
+          .personaje-dialog-header,
+          .personaje-dialog-actions {
+            padding: 1rem 1.5rem;
+          }
+          .personaje-dialog-header {
+            border-bottom: 1px solid #23127a;
+          }
+          .personaje-dialog-actions {
+            border-top: 1px solid #4c1da4;
+          }
+        </style>
+    </head>
+<body>
+
+     <nav class="navbar" role="navigation" aria-label="main navigation"> 
+  <div class="navbar-brand">
+    <a class="navbar-item" href="file:///C:/Users/Daas1/Downloads/Proyecto%202/index.html">
+<img src="Lego_Ninjago_logo.svg.webp" alt="Logo" figure class="image is-2by2">
+
+
+
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z" fill="#00D1B2"/>
+    </img>
+
+    </a>
+
+    
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Inicio
+      </a>
+
+      <a class="navbar-item">
+        Posters
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Más personajes
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Protagonistas
+          </a>
+          <a class="navbar-item is-selected">
+            Secundarios
+          </a>
+          <a class="navbar-item">
+            Antagónistas
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+         Report an issue
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+            
+            <strong>Mi youtube</strong>
+            <a class= "Mi youtube">
+              <img src="Youtube_logo.png" onclick=" window.location.href = 'https://www.youtube.com/@DavidFilmsFs/videos'">
+
+          </a>
+          <strong> Mi instagram</strong> 
+            <a class="Mi instagram">
+              <img src="Instagram_icon.png" onclick=" window.location.href = 'https://www.instagram.com/davidfilmsfs/'">
+            </a>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="card" style="position: relative; overflow: hidden;">
+
+  <div class="card-image">
+    <figure class="image" style="height: 250px;">
+     <img src="Fondo ninjago.jpg" alt="Fondo de Ninjago">
+    </figure>
+  </div>
+  
+  <div 
+    class="is-overlay is-flex is-flex-direction-column is-justify-content-flex-end p-6"
+    style="background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));">
+    <div class="container">
+      <span class="tag is-warning is-light has-text-weight-bold is-uppercase mb-20">
+        Personajes de
+      </span>
+      <h1 class="title is-1 has-text-white"  style="font-size: 80px">
+       NINJAGO
+      </h1>
+      <h2 class="subtitle is-5 has-text-warning has-text-weight-semibold"  style="font-size: 40px">
+        Y su historia
+      </h2>
+    </div>
+
+  </div>
+
+ </div>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <h2 class="title">Personajes de Ninjago</h2>
+          <div class="columns is-vcentered is-multiline">
+            <div class="column">
+              <label class="label" for="buscarPersonaje">Buscar por nombre o poder/rol</label>
+              <input class="input" id="buscarPersonaje" type="search" placeholder="Ej. Kai o Fuego" autocomplete="off">
+            </div>
+            <div class="column is-narrow">
+              <button class="button is-danger" id="agregarPersonaje" type="button">Agregar personaje</button>
+            </div>
+          </div>
+          <p id="contadorPersonajes" class="help mb-4" aria-live="polite"></p>
+          <div id="listaPersonajes" class="columns is-multiline"></div>
+          <p id="estadoVacio" class="has-text-grey" hidden>No hay personajes que coincidan con la búsqueda.</p>
+        </div>
+      </section>
+    </main>
+
+    <template id="plantillaPersonaje">
+      <div class="column is-12-mobile is-6-tablet is-4-desktop">
+        <article class="card" data-id="">
+          <button class="card-summary" type="button" aria-expanded="false">
+            <img class="imagen-personaje card-summary-image" src="" alt="">
+            <span class="title is-4 card-summary-title nombre"></span>
+          </button>
+          <div class="card-content card-details" hidden>
+            <div class="content">
+              <p><strong>Poder elemental:</strong> <span class="poder"></span></p>
+              <p><strong>Origen:</strong> <span class="origen"></span></p>
+              <p><strong>Padres:</strong> <span class="padres"></span></p>
+              <p><strong>Descripción:</strong> <span class="descripcion"></span></p>
+              <p><strong>Primera aparición:</strong> <span class="aparicion"></span></p>
+              <div class="card-actions is-flex is-justify-content-flex-end">
+                <button class="button is-small boton-editar" type="button">Editar</button>
+                <button class="button is-small is-danger is-light boton-eliminar" type="button">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </template>
+
+    <dialog class="personaje-dialog" id="dialogoPersonaje" aria-labelledby="tituloDialogoPersonaje">
+      <form id="formularioPersonaje">
+        <header class="personaje-dialog-header is-flex is-justify-content-space-between is-align-items-center">
+          <h2 class="title is-4 mb-0" id="tituloDialogoPersonaje">Agregar personaje</h2>
+          <button class="delete" id="cerrarDialogo" type="button" aria-label="Cerrar"></button>
+        </header>
+        <div class="p-5">
+          <div class="field"><label class="label" for="nombrePersonaje">Nombre *</label><input class="input" id="nombrePersonaje" name="Nombre" required maxlength="100"></div>
+          <div class="field"><label class="label" for="poderPersonaje">Poder elemental o rol *</label><input class="input" id="poderPersonaje" name="Poder_elemental" required maxlength="80"></div>
+          <div class="field"><label class="label" for="origenPersonaje">Origen *</label><input class="input" id="origenPersonaje" name="Origen" required maxlength="100"></div>
+          <div class="field"><label class="label" for="padresPersonaje">Padres</label><input class="input" id="padresPersonaje" name="Padres" maxlength="160"></div>
+          <div class="field"><label class="label" for="descripcionPersonaje">Descripción</label><textarea class="textarea" id="descripcionPersonaje" name="descripcion" maxlength="500"></textarea></div>
+          <div class="field"><label class="label" for="aparicionPersonaje">Primera aparición</label><input class="input" id="aparicionPersonaje" name="primera_aparicion" maxlength="100"></div>
+          <div class="field"><label class="label" for="imagenPersonaje">Imagen (ruta o URL)</label><input class="input" id="imagenPersonaje" name="imagen" maxlength="500" placeholder="Ej. Kai.jpg"></div>
+        </div>
+        <footer class="personaje-dialog-actions is-flex is-justify-content-flex-end">
+          <button class="button" id="cancelarDialogo" type="button">Cancelar</button>
+          <button class="button is-danger" type="submit">Guardar personaje</button>
+        </footer>
+      </form>
+    </dialog>
+
+<script src="proyecto.js"></script>
+
+</body>
+</body>
+
+      <div class="field">
+
+        <label class="label" for="poderPersonaje">Poder elemental o rol *</label>
