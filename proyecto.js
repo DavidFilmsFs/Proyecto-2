@@ -173,7 +173,7 @@ function cargarPersonajes() {
     }
 }
 
-function guardar(lista = personajes) {
+function guardarPersonajes(lista = personajes) {
     try {
         localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify(lista));
         return true;
@@ -183,11 +183,23 @@ function guardar(lista = personajes) {
     }
 }
 
-function renderizar() {
-    const consulta = elementos.busqueda.value.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-    const filtrados = personajes.filter(personaje =>
-        `${personaje.Nombre} ${personaje.Poder_elemental}`.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(consulta)
-    );
+function buscarPersonajes(consulta) {
+    let termino = consulta.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    let resultados = [];
+
+    while (termino && resultados.length === 0) {
+        resultados = personajes.filter(personaje =>
+            `${personaje.Nombre} ${personaje.Poder_elemental}`
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(termino)
+        );
+        if (resultados.length === 0) termino = termino.slice(0, -1);
+    }
+
+    return resultados.length ? resultados : personajes;
+}
+
+function renderizarGrid() {
+    const filtrados = buscarPersonajes(elementos.busqueda.value);
 
     elementos.lista.replaceChildren();
     filtrados.forEach(personaje => {
@@ -245,12 +257,12 @@ function guardarFormulario(evento) {
     const actualizados = idEnEdicion
         ? personajes.map(item => item.id === idEnEdicion ? personaje : item)
         : [...personajes, personaje];
-    if (!guardar()) return;
+    if (!guardarPersonajes(actualizados)) return;
 
     personajes = actualizados;
     elementos.dialogo.close();
     elementos.busqueda.value = "";
-    renderizar();
+    renderizarGrid();
 }
 
 elementos.lista.addEventListener("click", evento => {
@@ -267,9 +279,9 @@ elementos.lista.addEventListener("click", evento => {
         abrirDialogo(personaje);
     } else if (boton.matches(".boton-eliminar") && confirm(`¿Eliminar a ${personaje.Nombre}?`)) {
         const actualizados = personajes.filter(item => item.id !== personaje.id);
-        if (guardar(actualizados)) {
+        if (guardarPersonajes(actualizados)) {
             personajes = actualizados;
-            renderizar();
+            renderizarGrid();
         }
     }
 });
@@ -277,14 +289,14 @@ elementos.lista.addEventListener("click", evento => {
 document.querySelector("#agregarPersonaje").addEventListener("click", () => abrirDialogo());
 document.querySelector("#cerrarDialogo").addEventListener("click", () => elementos.dialogo.close());
 document.querySelector("#cancelarDialogo").addEventListener("click", () => elementos.dialogo.close());
-elementos.busqueda.addEventListener("input", renderizar);
+elementos.busqueda.addEventListener("input", renderizarGrid);
 elementos.formulario.addEventListener("submit", guardarFormulario);
 elementos.dialogo.addEventListener("click", evento => {
     if (evento.target === elementos.dialogo) elementos.dialogo.close();
 });
 
 let personajes = cargarPersonajes();
-renderizar();
+renderizarGrid();
 
 
 
